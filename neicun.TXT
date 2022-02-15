@@ -1,0 +1,35 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int quantity = 0;
+	char** arr1, ** arr2;
+	char** arr3;
+	printf("How many words do you wish to enter?\n");
+	scanf("%d", &quantity);
+	getchar();
+	arr1 = (char**)malloc(sizeof(char*) * quantity);
+	arr2 = (char**)malloc(quantity * sizeof(char*));
+	arr3 = (char**)malloc(sizeof(char*) * quantity);
+	for (int t = 0; t < quantity; t++)
+	{
+		arr2[t] = (char*)malloc(sizeof(char*) * 20);
+	}
+	printf("enter %d words now\n", quantity);
+	for (int t = 0; t < quantity; t++)
+	{
+		gets(arr2[t]);//此处应该用scanf修缮
+		arr1[t] = &arr2[t][0];
+		int a = strlen(arr2[t])+1;//复制
+		arr3[t] = (char*)malloc(a);
+		strcpy(arr3[t], arr1[t]);
+		for (int y = 0; y < a; y++)
+			printf("%c", arr3[t][y]);
+	}
+	free(arr1);
+	free(arr2);
+	free(arr3);
+	return 0;
+}
